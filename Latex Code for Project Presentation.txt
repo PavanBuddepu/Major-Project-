@@ -1,0 +1,671 @@
+\documentclass{beamer}
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{pdflscape}
+\usepackage{amsmath,amssymb}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\title[Pareto-Weibull Distribution and it's Regression Model ]{ On A New Heavy Tailed Pareto-Weibull Distribution and it's Regression Model}
+
+
+%A subtitle is optional and this may be deleted
+
+
+\author[Buddepu Pavan, 2020MSTA004] {Submitted by - Buddepu Pavan \\
+	\vspace{5mm}
+	Supervised by - Dr.Deepesh Bhati 
+}
+\vspace{3cm}
+\institute[]{ Department of Statistics, \\
+	Central University of Rajasthan\\
+	Bandar Sindri, Kishangarh, Ajmer}
+
+
+% - Give the names in the same order as the appear in the paper.
+% - Use the  command only if the authors have different
+%   affiliation.
+% (optional, but mostly needed)
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+\date
+
+
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+%\subject{}
+% This is only inserted into the PDF information catalog. Can be left
+% out.
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+	\begin{frame}<beamer>{Contents}
+		\tableofcontents[currentsection,currentsubsection]
+	\end{frame}
+}
+
+% Let's get started
+\begin{document}
+	
+	\begin{frame}
+		
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}{Contents}
+		\tableofcontents
+		% You might wish to add the option [pausesections]
+	\end{frame}
+	
+	
+	
+	
+	
+	
+	\section{Introduction}
+	\begin{frame}{Introduction}
+		\begin{itemize}
+			\item Modeling heavy tailed data has become a point of attraction to the actuaries where the challenge is to model high frequency of small losses and low frequency of high losses. \pause
+			\vspace{1cm}
+			\item In actuarial statistics and finance, the classical Pareto distribution has been considered to be better than other models because it provides a good narration of the random behavior of large claims.
+			
+		\end{itemize}
+	\end{frame}
+    \begin{frame}{Introduction}
+    	\begin{itemize}
+    		\item In this study, we propose a mixed Pareto regression model to handle the unimodal, right skewed and heavy-tailed data set which often arises in the field of insurance and finance.\pause
+    		\vspace{1cm}
+    		\item An Expectation-Maximization (EM) type algorithm is used to facilitate the ML estimation procedure for the proposed model.
+    	\end{itemize}
+    \end{frame}
+	
+	
+	
+	\section{Proposed Problem}
+	\begin{frame}{Proposed Problem}
+		\begin{itemize}
+			\item To develop a new heavy tailed mixed model using the methodology given in Colombi
+			(1990).\pause
+			\vspace{0.5cm}
+			\item To provide an Expectation-Maximization (EM) algorithm to expdiate the process of
+			finding maximum likelihood estimates of the model parameter.\pause
+			\vspace{0.5cm}
+			\item To assess the applicability pf proposed EM type algorithm for new heavy tailed mixed
+			model using a real world insurance data sets.
+		
+			
+			
+			
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Proposed Problem}
+		\begin{itemize}
+		\item To develop new heavy tailed regression model to accomodate available covariates to
+		increase the predictive power of the model.\pause
+		\vspace{0.5cm}
+		\item To study the EM type algorithm with the regression sturucture to the parameters of
+		the proposed mixed model.\pause
+		\vspace{0.5cm}
+		\item To examine the versatility of the proposed EM type algorithm using a real world
+		insurance data set.
+		\end{itemize}
+	\end{frame}
+	
+	\section{Methodology}
+	\begin{frame}{Methodology}
+		\textbf{Pareto-Weibull distribution} \\
+		\vspace{0.25cm}
+		\begin{itemize}
+			\item In order to proposed the model, for the sake of completeness, we define the following: Let random variable $X$ follow Weibull$(\phi,\tau)$ having density 
+		\begin{equation} 
+			g_X(x)=\frac{\tau}{\phi}  e^{-\left(\frac{x}{\phi }\right)^{\tau}} \left(\frac{x}{\phi }\right)^{\tau-1}, \quad x>0, \phi > 0, \tau > 0, \pause
+		\end{equation}	
+	   \vspace{1cm}
+	   \item The conditional distribution of $Y|X=x$ follows Pareto$(x,\alpha)$ with density 
+	   \begin{equation}
+	   	f_{Y|X}(y|x)= \frac{\alpha  x^{\alpha }}{y^{\alpha +1}}, \quad y>x, \alpha>0.
+	   \end{equation}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Methodology}
+		\vspace{0.5cm}
+		\begin{itemize}
+			\item We say that the random variable $Y$ follows a Pareto-Weibull (PW) distribution if it admits the stochastic representation:
+			\begin{equation*}
+				Y|X \sim Pareto(x, \alpha), \quad X \sim Weibull(\phi,\tau), \pause
+			\end{equation*}
+		\vspace{1cm}
+		\item The unconditional distribution of $Y$ will be denoted by $Y\sim PW(\alpha,\phi,\tau)$ and its density is given as
+		\begin{equation*} 
+			f_{Y}(y;\alpha,\phi,\tau)= \int_0^y \frac{\alpha x^{\alpha-1 } \left(\tau  e^{-\left(\frac{x}{\phi }\right)^{\tau}} \left(\frac{x}{\phi}\right)^{\tau }\right)}{y^{\alpha +1}} \, dx.
+		\end{equation*}
+		\end{itemize}
+	
+	\end{frame}
+	
+	\begin{frame}{Methodology}
+		\begin{itemize}
+			\vspace{1cm}
+			\item The probability density function of Pareto-Weibull distribution is given by
+			\begin{equation*}
+				_{PW}f_{y}(y;\alpha,\phi,\tau)= \frac{\alpha  \phi ^{\alpha } }{y^{\alpha +1}}\left(\Gamma \left(\frac{\alpha +\tau }{\tau }\right)-\Gamma \left(\frac{\alpha +\tau }{\tau },\left(\frac{y}{\phi }\right)^{\tau }\right)\right)\pause
+			\end{equation*}
+		   \item Let $g(y)=\text{log}(f(y))$ then the $g(y)$ can be written as\\
+			
+			\begin{equation*}
+				_{PW}g_{y}(y;\alpha,\phi,\tau)= \text{log}\left( \frac{\alpha  \phi ^{\alpha } }{y^{\alpha +1}}\left(\Gamma \left(\frac{\alpha +\tau }{\tau }\right)-\Gamma \left(\frac{\alpha +\tau }{\tau },\left(\frac{y}{\phi }\right)^{\tau }\right)\right)\right)
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
+    \begin{frame}{Methodology}
+    	\begin{itemize}
+    		
+    		\item 	After equating the first derivative of the above equation to zero, we have following necessary condition for the existing of the mode $M$ as\\
+    		\begin{equation*}
+    			-\phi^{(\tau+\alpha)}\left(\Gamma \left(\frac{\alpha +\tau }{\tau }\right)-\Gamma \left(\frac{\alpha +\tau }{\tau },\left(\frac{y}{\phi }\right)^{\tau }\right)\right)(\alpha+1)-\tau y^{\alpha+\tau} \\e^{-(\frac{y}{\phi})^{\tau}}=0
+    		\end{equation*}\pause
+    		\vspace{0.5cm}
+    		\item It is easy to verify that, $f(0) = 0$ and $f (+\infty) = 0$, the Pareto-Weibull distribution is always uni-modal.    \quad  
+    	\end{itemize}
+    \end{frame}
+	\begin{frame}{Methodology}
+		\vspace{0.5cm}
+		\textbf{Pareto-Weibull Regression Model}
+		\vspace{0.5cm}
+		\begin{itemize}
+			\item In this study, we consider two mixed Pareto regression models with non constant variance, can be given as follows. Let us assume that $Z_{i}$ are independent and identically distributed (i.i.d) random variables and $Y_{i}| Z_{i}$ be the claim from a $i^{th}$ policyholder, $i=1,2,....,n$, are i.i.d random variables follows a one-parameter Pareto distribution having probability density function (pdf) as
+			\begin{equation}
+				f_{Y|Z}(y_{i}|z_{i})= \frac{\alpha_{i} z_{i}^{\alpha_{i}} }{y_{i}^{\alpha_{i} +1}},
+			\end{equation}
+			where $y_{i} \ge z_{i}$, $\alpha_{i} > 1$ \\
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Methodology}
+		\begin{itemize}
+			\item The expected value and variance of the $Y_{i}|z_{i}$ are given by
+			\begin{equation*}
+				\mathbb{E}(Y_{i}|z_{i})=\frac{\alpha_{i} z_{i}}{(\alpha_{i}-1)}\pause
+			\end{equation*}
+			
+			\begin{equation*}
+				\mathbb{V}ar(Y_{i}|z_{i})= \frac{\alpha_{i} z_{i}^{2}}{(\alpha_{i}-2) (\alpha_{i}-1)^{2}}
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
+		
+	
+	\begin{frame}{Methodology}
+		\begin{itemize}
+			\item The unconditional distribution of $Y_{i}$ having mixed Pareto distribution with pdf
+			
+			\begin{equation}\label{cden}
+				f(y_{i})=\int_0^y f(y_{i}|z_{i}) g(z_{i};\tau_{i}) \, dz_{i}\pause
+			\end{equation}
+		
+	 
+		\item Pareto-Weibull regression model is generated by considering scale parameter of the Pareto distribution follows unit mean Weibull distribution having parameter $\phi_{i}$ with  pdf given by
+		\begin{equation}
+			g(z_{i};\phi_{i})=\phi_{i}.\left [\Gamma\left(1+\frac{1}{\phi_{i}}\right)\right]  e^{-\left(z_{i}\left [\Gamma(1+\frac{1}{\phi_{i}})\right]\right)^{\phi_{i}}}\left(z_{i}\left [\Gamma\left(1+\frac{1}{\phi_{i}}\right)\right]\right)^{\phi_{i}-1}
+		\end{equation}
+	$z_{i}>0$ and $\mathbb{E}(Z_{i})=1$
+	\end{itemize}
+	\end{frame}
+	\begin{frame}{EM Algorithm}
+		 \begin{itemize}
+		 	\item Using equation (\ref{cden}), the pdf of two-parameter Pareto-Weibull distribution can be given by
+		 	\begin{equation}
+		 		{PW}f_{y}(y_{i};\phi_{i},\alpha_{i})= \frac{\alpha_{i}   }{y_{i}^{\alpha_{i} +1}.\left [\Gamma(1+\frac{1}{\phi_{i}})\right] ^{\alpha_{i} }}.\left[\Gamma \left(\frac{\alpha_{i} +\phi_{i} }{\phi_{i} }\right)-\Gamma \left(\frac{\alpha_{i} +\phi_{i} }{\phi_{i} },\\ \left(y_{i}\left [\Gamma(1+\frac{1}{\phi_{i}})\right]\right)^{\phi_{i} }\right)\right]\pause
+		 	\end{equation}
+	 	\vspace{0.25cm}
+		 	\\ where $y_{i}>0$, $\alpha_{i}>0$ and $\phi_{i}>0$. The parameter $\alpha_{i}$ and $\phi_{i}$ contains the covariate information as $\alpha_{i}=\text{exp}(\beta_{1}^{\top}\mathbf{x}_{1,i})$ $\phi_{i}=\text{exp}(\beta_{2}^{\top}\mathbf{x}_{2,i})$
+		 \end{itemize}
+		
+		
+		
+	\end{frame}
+	\section{EM Algorithm}
+	\begin{frame}{EM Algorithm}
+		\textbf{Pareto-Weibull Distribution}
+		\vspace{1cm}
+		\begin{itemize}
+			\item We make use of EM algorithm to estimate unknown parameters of the proposed model 
+			\begin{multline}\label{cloglik}
+				l_{c}(\theta; y_i, x_i)=\sum_{i=1}^{n}\left[\log(\alpha)+\alpha\log(x_{i})-(\alpha+1)\log(y_{i})\right]\\
+				\quad \quad	+ \sum_{i=1}^{n} \left[\log(\tau)-\log(\phi)-\left(\frac{x_{i}}{\phi }\right)^{\tau}+(\tau-1)(\log(x_{i})- \phi)\right]
+			\end{multline}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{EM Algorithm}
+		\begin{itemize}
+			\item E-step: The E-step is used to fill the missing data. It computes the expected value of $l_{c}(\theta; Y, X )$ given the observed data, Y, and the current parameter estimate, $\theta^{r}$ say. The conditional expectation of complete log-likelihood function given in (\ref{cloglik}), say $Q$ function can be written as
+			
+			\begin{equation*}
+				Q(\theta;\theta^{(r)})=\mathbb{E}_{X_{i}}(l_{c}(\theta; Y, X ) |Y,\theta^{(r)})
+			\end{equation*}
+			
+			\begin{multline}
+				Q(\theta;\theta^{(r)})=\sum_{i=1}^{n}\left[\log(\alpha^{(r)})+\alpha^{(r)}.\mathbb{E}(\log(x_{i}))-(\alpha^{(r)}+1).\log(y_{i})\right]\\
+				\quad \quad	\quad + \sum_{i=1}^{n} \left[\log(\tau^{(r)})-\log(\phi^{(r)})-\left(\frac{\mathbb{E}(x_{i}^{\tau^{(r)}})}{\phi^{(r)}^{\tau^{(r)}} }\right)+(\tau^{(r)}-1)(\mathbb{E}(\log(x_{i}))- \phi^{(r)})\right]
+			\end{multline} 
+		\end{itemize}
+	\end{frame}
+    \begin{frame}{EM Algorithm}
+    	\begin{itemize}
+    		\item Expectation step consisting computational part of conditional expectation of some functions of unobserved random variable  $X$ that are needed for the maximization. Using the current estimates $\hat{\alpha}^{(r)}$, $\hat{\phi}^{(r)}$ and $\hat{\tau}^{(r)}$, we calculate the pseudo-values,
+    	\end{itemize}
+    \fontsize{8pt}{9pt} \selectfont
+    \begin{equation*}
+    	t_i= \mathbb{E}(\text{log}(X_i)|y_i;\hat{\alpha}^{(r)},\hat{\phi}^{(r)},\hat{\tau}^{(r)})= \frac{\int_0^y \log(x_{i}) \frac{\alpha^{(r)} x_{i}^{\alpha^{(r)}} }{y_{i}^{\alpha^{(r)} +1}}.\frac{\tau^{(r)}}{\phi^{(r)}}  e^{-\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}}}\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}-1} dx_{i}}{\int_0^y  \frac{\alpha^{(r)} x_{i}^{\alpha^{(r)}}}{y_{i}^{\alpha^{(r)} +1}}.\frac{\tau^{(r)}}{\phi^{(r)}} e^{-\left(\frac{x_{i}}{\phi^{(r)}}\right)^{\tau^{(r)}}} \left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}-1} dx_{i}}
+    \end{equation*}
+    
+    \end{frame}
+	\begin{frame}{EM Algorithm}
+		\fontsize{8pt}{9pt} \selectfont
+		\begin{equation*}
+			s_i= \mathbb{E}(X_i^{\hat{\tau}^{(r)}}|y_i;\hat{\alpha}^{(r)},\hat{\phi}^{(r)},\hat{\tau}^{(r)})= \frac{\int_0^y x_i^{\hat{\tau}^{(r)}} \frac{\alpha^{(r)} x_{i}^{\alpha^{(r)}} }{y_{i}^{\alpha^{(r)} +1}}.\frac{\tau^{(r)}}{\phi^{(r)}}  e^{-\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}}}\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}-1} dx_{i}}{\int_0^y  \frac{\alpha^{(r)} x_{i}^{\alpha^{(r)}} }{y_{i}^{\alpha^{(r)} +1}}.\frac{\tau^{(r)}}{\phi^{(r)}}  e^{-\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}}}\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}-1}  dx_{i}}\pause
+		\end{equation*}
+	\vspace{0.5cm}
+		\fontsize{8pt}{9pt} \selectfont
+		\begin{equation*}
+			w_i= \mathbb{E}(X_i^{\hat{\tau}^{(r)}}\log(X_{i})|y_i;\hat{\alpha}^{(r)},\hat{\phi}^{(r)},\hat{\tau}^{(r)})= \frac{\int_0^y x_i^{\hat{\tau}^{(r)}}\log(x_{i}) \frac{\alpha^{(r)} x_{i}^{\alpha^{(r)}} }{y_{i}^{\alpha^{(r)} +1}}.\frac{\tau^{(r)}}{\phi^{(r)}}  e^{-\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}}}\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}-1}  dx_{i}}{\int_0^y  \frac{\alpha^{(r)} x_{i}^{\alpha^{(r)}} }{y_{i}^{\alpha^{(r)} +1}}.\frac{\tau^{(r)}}{\phi^{(r)}}  e^{-\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}}}\left(\frac{x_{i}}{\phi^{(r)} }\right)^{\tau^{(r)}-1}  dx_{i}}
+		\end{equation*}
+	\end{frame}
+	
+	\begin{frame}{EM Algorithm}
+		\begin{itemize}
+			\item M-step: 
+			The M-step consists of maximizing over parameter vector $\theta$ using the conditional expectations computed in E-step. This step generates complete data after the expectation step and updates the parameters of the model. That is, we set
+			\begin{equation*}
+				\theta^{(r+1)}=\max Q(\theta;\theta^{(r)})\pause
+			\end{equation*}
+			Where $\theta^{(r)}$ be the estimates of the parameter vector $\theta$ at the $r^{th}$ iteration. 
+			\item The updated values of the parameters are
+			
+			\begin{equation*}
+				\hat{\alpha}^{(r+1)}=\frac{n}{(\sum_{i=1}^{n}\text{log}(y_i)-\sum_{i=1}^{n}t_i)}
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
+      \begin{frame}{EM Algorithm}
+	
+		\begin{equation*}
+			\hat{\phi}^{(r+1)}=\left(\frac{\sum_{i=1}^{n} s_i}{n}   \right)^{\frac{1}{\hat{\tau}^{(r)}}}
+		\end{equation*}
+		
+		\begin{equation}\label{taueq}
+			\frac{n}{\hat{\tau}^{(r+1)}}+\sum_{i=1}^{n}t_i-n\log(\hat{\phi}^{(r)})-\frac{\sum_{i=1}^{n}w_i}{(\hat{\phi}^{(r)})^{\hat{\tau}^{(r+1)}}}+\frac{\log(\hat{\phi}^{(r)})\sum_{i=1}^{n} s_i}{(\hat{\phi}^{(r)})^{\hat{\tau}^{(r+1)}}}=0
+		\end{equation}
+	\begin{itemize}
+		\item Solving (\ref{taueq}) for the $\hat{\tau}^{(r+1)}$, we can obtain the improved estimate of $\hat{\tau}^{(r+1)}$. \pause
+		\item Finally, iterate between the E-step and the M-step until some convergence criterion is satisfied, for example the relative change in log-likelihood between two successive iterations is smaller than $10^{-12}$.
+	\end{itemize}
+	 
+      \end{frame}
+	
+
+
+    \begin{frame}{EM algorithm}
+	 \textbf{Pareto-Weibull Regression Model}
+	 \vspace{0.5cm}
+         \begin{itemize}
+        	\item The complete data log-likelihood takes the form
+        
+         \fontsize{6.8pt}{7pt} \selectfont
+         \begin{multline}
+   	l_{c}(\theta)=\sum_{i=1}^{n}\left[\log(\alpha_{i})+\alpha_{i}.\log(z_{i})-(\alpha_{i}+1).\log(y_{i})\right]\\
+	\quad \quad + \sum_{i=1}^{n} \left[\log(\phi_{i})+\log\left(\Gamma\left(1+\frac{1}{\phi_{i}}\right)\right)+(\phi_{i}-1).\left(\log(z_{i})+\log\left(\Gamma\left(1+\frac{1}{\phi_{i}}\right)\right)\right)-z_{i}.\Gamma\left(1+\frac{1}{\phi_{i}}\right)\right] \pause
+         \end{multline}
+     \fontsize{11pt}{12pt} \selectfont
+      \item The expectation of $\log(z_{i})$ and $z_{i}$ are needed for the process of M-step.\pause 
+   	\item E-step: The required expectations for $i=1,2...n$ can be computed as
+	\begin{equation*}
+		t_{i}=\mathbb{E}_{Z_{i}}\left[\log(Z_{i})|y_{i};\theta^{(r)}\right]
+	\end{equation*}
+\end{itemize}
+\end{frame}
+\begin{frame}{EM Algorithm}
+	\fontsize{6.8pt}{7pt}
+	\begin{equation}
+		t_{i}=\frac{\int_0^y \log(z_{i}) \frac{\alpha_{i}^{(r)} z_{i}^{\alpha_{i}^{(r)}} }{y_{i}^{\alpha_{i}^{(r)} +1}}.\phi^{(r)}_{i}.\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]  e^{-\left(z_{i}\left [\Gamma(1+\frac{1}{\phi^{(r)}_{i}})\right]\right)^{\phi^{(r)}_{i}}}\left(z_{i}\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]\right)^{\phi^{(r)}_{i}-1} dz_{i}}{\int_0^y  \frac{\alpha_{i}^{(r)} z_{i}^{\alpha_{i}^{(r)}} }{y_{i}^{\alpha_{i}^{(r)} +1}}.\phi^{(r)}_{i}.\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]  e^{-\left(z_{i}\left [\Gamma(1+\frac{1}{\phi^{(r)}_{i}})\right]\right)^{\phi^{(r)}_{i}}}\left(z_{i}\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]\right)^{\phi^{(r)}_{i}-1} dz_{i}}\pause
+	\end{equation}
+	and
+	\begin{equation*}
+		w_{i}=\mathbb{E}_{Z_{i}}\left[Z_{i}|y_{i};\theta^{(r)}\right]
+	\end{equation*}
+\fontsize{6.8pt}{7pt}
+\begin{equation}
+	w_{i}=\frac{\int_0^y (z_{i}) \frac{\alpha_{i}^{(r)} z_{i}^{\alpha_{i}^{(r)}} }{y_{i}^{\alpha_{i}^{(r)} +1}}.\phi^{(r)}_{i}.\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]  e^{-\left(z_{i}\left [\Gamma(1+\frac{1}{\phi^{(r)}_{i}})\right]\right)^{\phi^{(r)}_{i}}}\left(z_{i}\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]\right)^{\phi^{(r)}_{i}-1} dz_{i}}{\int_0^y  \frac{\alpha_{i}^{(r)} z_{i}^{\alpha_{i}^{(r)}} }{y_{i}^{\alpha_{i}^{(r)} +1}}.\phi^{(r)}_{i}.\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]  e^{-\left(z_{i}\left [\Gamma(1+\frac{1}{\phi^{(r)}_{i}})\right]\right)^{\phi^{(r)}_{i}}}\left(z_{i}\left [\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right]\right)^{\phi^{(r)}_{i}-1} dz_{i}}
+\end{equation}
+ \\where $\phi^{(r)}_{i}=\text{exp}(\text{x}_{2}^{\top}\beta_{2}^{(r)})$.\\	
+\end{frame}
+
+\begin{frame}{EM Algorithm}
+	\begin{itemize}
+		\item M-step: Using the numerical approximate value of $t_{i}$, update the regression parameters $\beta_{1}$ using Newton-Raphson method.
+		\fontsize{7.5pt}{9pt} \selectfont
+		\begin{align} \nonumber
+			&h_{2}(\beta_{2})=\left[1+\left(\left(1-\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)^{\phi^{(r)}_{i}}.w_{i}^{\phi^{(r)}_{i}}\right)\left(\phi^{(r)}_{i}.\log\left(\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right)-\digamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right) \right. \right. \right.\\
+			& \left. \left. \left. +\phi^{(r)}_{i}.t_{i}\right)\right)\right] \mathbf{x}_{2,ij}
+		\end{align}	
+	
+\fontsize{11pt}{12pt} \selectfont
+\begin{equation}
+	H_{2}(\beta_{2})=\left[A_1 + A_2 + A_3 + A_4 + A_5\right]\mathbf{x}_{2,ij}\mathbf{x}_{2,ij}^{\top} = X_{2}^{\top}W_{2}X_{2}
+\end{equation} 	
+ where $i=1,2,3,...n$ and $j=1,2,3....p_{2}$. 
+
+	\end{itemize}
+	
+\end{frame}
+	\begin{frame}{EM Algorithm}
+	\begin{itemize}
+		\item The matrix $W_{2}$ can be written as $W_{2}=diag\{ A_1 + A_2 + A_3 + A_4 + A_5  \}$.\pause
+	\end{itemize}
+	
+	
+	\\
+	Where $A_1=\phi^{(r)}_{i} \text{log}(\Gamma(1+\frac{1}{\phi^{(r)}_{i}}))-\Psi^{(0)}(1+\frac{1}{\phi^{(r)}_{i}})$, $A_2=\frac{\Psi^{(1)}\left(1+\frac{1}{\phi^{(r)}_{i}}\right)}{\phi^{(r)}_{i}}$, $A_3=\phi^{(r)}_{i} \text{log}(z_{i})$,\\
+	\fontsize{8pt}{9pt} \selectfont \vspace{0.5cm} $A_4=\text{log}(z_{i})\left[1+\phi^{(r)}_{i}.\text{log}(z_{i})+\phi^{(r)}_{i}.\text{log}(\Gamma(1+\frac{1}{\phi^{(r)}_{i}}))-\Psi^{(0)}(1+\frac{1}{\phi^{(r)}_{i}})\right].z_{i}^{\phi^{(r)}_{i}}\left(\Gamma(1+\frac{1}{\phi^{(r)}_{i}})\right).\phi^{(r)}_{i}$ and
+	\fontsize{6pt}{7pt} \selectfont \vspace{0.5cm} $A_5=z_{i}^{\phi^{(r)}_{i}}.\left(\Gamma(1+\frac{1}{\phi^{(r)}_{i}})\right)\left[\left(\phi^{(r)}_{i}\right)^{2}.\text{log}\left(\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right)\left(1+\phi^{(r)}_{i}.\text{log}(z_{i})+\phi^{(r)}_{i}.\text{log}\left(\Gamma\left(1+\frac{1}{\phi^{(r)}_{i}}\right)\right)\right) $
+
+   \end{frame}
+	\begin{frame}{EM Alogrithm}
+		\begin{itemize}
+			\item The improved estimates of $\beta_{2}^{(r)}$ can be obtained using Newton Raphson method.\pause
+		\vspace{1.5cm}
+			\item Finally, iterate between the E-step and the M-step until some convergence criterion is satisfied, for example the relative change in log-likelihood between two successive iterations is smaller than $10^{-12}$.
+		\end{itemize}
+	\end{frame}
+
+\section{Real Data}
+\begin{frame}{Real Data}
+	\textbf{Pareto-Weibull Distribution}
+	\vspace{1cm}
+	\begin{itemize}
+		\item we consider the well-known Danish fire insurance dataset that consists of 2492 fire insurance losses in millions of Danish kroner (DKr) from the years 1980 to 1990 (both inclusive), adjusted to reflect 1985 values.
+	\end{itemize}
+	 
+	  
+\end{frame}
+\begin{frame}{Real Data}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=12cm]{hisdanish (1).jpg}
+		\caption{Histrogram for the claims}
+		\label{fig:my_label}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Real Data}
+	\begin{table}[htp]
+		\centering
+		\caption{Value-at-Risk (\texttt{VaR}) for the \texttt{Danish} fire insurance data set at security level $\gamma$}
+		\scalebox{0.85}{
+			\begin{tabular}{c|ccccccc} \hline \hline
+				& \multicolumn{5}{c}{Model}                                                                             \\ \hline
+				$\gamma$ & PW & PL & Pareto & E-IG & CL-P & CW-P  & Emperical \\ \hline
+				0.05  & 0.908   & 0.99   & 0.119  & 0.122  &0.869&0.902     & 0.904     \\
+				0.1   & 0.968   & 1.087   & 0.245        & 0.252  &0.94&0.957   & 0.964     \\
+				0.15  & 1.017     & 1.165 & 0.381    & 0.391    &0.992&1.010     & 1.02      \\
+				0.25  & 1.123   & 1.309   & 0.681  & 0.701  &1.080&1.115    & 1.157     \\
+				0.35  & 1.257    & 1.465   & 1.035   & 1.065 &1.281&1.249  & 1.329     \\
+				0.45  & 1.434       & 1.658    & 1.459    & 1.504     &1.455&1.427   & 1.516     \\
+				0.55  & 1.679       & 1.918     & 1.988   & 2.051       &1.696&.673      & 1.735     \\
+				0.65  & 2.047        & 2.301       & 2.68    & 2.764    &2.053&2.043     & 2.049     \\
+				0.75  & 2.668       & 2.937       & 3.66  & 3.773      &2.653&2.668    & 2.645     \\
+				0.85  & 3.989       & 4.252    & 5.276   & 5.421      &3.915&4.002   & 3.884     \\
+				0.95  & 9.475        & 9.425      & 9.344    & 9.446   &9.039&9.571    & 8.406     \\
+				0.99  & 33.655     & 30.254      & 17.103   & 16.561  &30.793&34.334    & 24.613   \\ \hline \hline  
+		\end{tabular}}
+	\end{table}
+\end{frame}
+\begin{frame}{Real Data}
+	 \begin{table}[htp]
+		\centering
+		\caption{\texttt{LEV} for the \texttt{Danish} fire insurance data set}
+		\scalebox{0.96}{
+			\begin{tabular}{c|c|c|c|c|c|c|c} \hline \hline  
+				u   & PW & PL & Pareto & E-IG & CL-P &CW-P & Empirical  \\ \hline \hline
+				1   & 0.957    & 0.964    & 0.660      & 0.678 &0.909&0.987   & 0.935 \\
+				2   & 1.387    & 1.210     & 0.974     & 0.992 &1.418&1.527 &   1.551      \\
+				3   & 1.594    & 1.452    & 1.297     & 1.315 &1.669&1.801 &    1.839  \\
+				5   & 1.755     & 1.604    & 1.472       & 1.517&.942&2.107 &       2.155                 \\
+				8   & 1.925     & 1.782      & 1.668       & 1.713&2.158&2.355 &    2.387  \\
+				10  & 1.982       & 1.835    & 1.668         & 1.741&2.250&2.462 &     2.483                  \\
+				15  & 2.135    & 1.976     & 1.668     & 1.810   &2.401&2.642 &     2.653  \\
+				21  & 2.195     & 2.035   & 1.668       & 1.811  &2.513&2.778  &       2.762              \\
+				40  & 2.353    & 2.165   & 1.668      & 1.811     &2.697&3.007  &  2.919 \\
+				70  & 2.475    & 2.259   & 1.668       & 1.811     &2.829&3.176  &    2.997              \\
+				110 & 2.552     & 2.305    & 1.668       & 1.811    &2.920&3.297  &    3.045   \\
+				170 & 2.620   & 2.350    & 1.668    & 1.811       &2.997&3.400   &       3.093        \\
+				270 & 2.694   & 2.408     & 1.668      & 1.811      &3.067&3.497   &      3.113 \\ \hline    \hline       
+		\end{tabular}}
+	\end{table}
+\end{frame}
+       \begin{frame}{Real Data}
+       	 \begin{table}[htp]
+       		\centering
+       		\caption{Results for \texttt{Danish} fire insurance Data Set}
+       		\scalebox{0.75}{
+       			\begin{tabular}{l|ccccc|c} \hline \hline
+       				Model            & Parameter & NLL     & AIC     & BIC & K-S & Reference    \\ \hline \hline
+       				PW  & 3    & 3839.43 &7684.86  &7689.05	 & 0.049 &Proposed Model  \\
+       				CW-P &3&3840.38 & 7686.76 & 7690.95 & 0.052 & Calderín and Kwok (2016)\\
+       				CL-P & 3& 3865.86 & 7737.72 &7741.90 & 0.032 & Calderín and Kwok (2016)\\
+       				PL & 3    &3868.15	 & 7742.30   &7746.49     & 0.106 &Colombi (1990)  \\
+       				Pareto & 3 & 5051.91 &	10109.82 & 10114.01 &0.290 &--  \\
+       				E-IG & 3 & 5088.45 & 10182.91	& 10187.09 &0.283 &--\\  \hline		 \hline  	
+       		\end{tabular}}
+       	\end{table}
+       \end{frame}
+\begin{frame}{Real Data}
+	\textbf{Pareto-Weibull Regression Model}
+	\begin{itemize}
+		\item we consider the vehicle insurance losses data set based on one-year vehicle insurance policies taken out in 2004 and 2005, The original data set comprises of 67,856 policies and we consider 4,624 policies having at least one claim.\pause
+	\end{itemize}
+	
+	\begin{table}[htp] 
+		\centering
+		\caption{Summary of continuous explanatory variable and response variable of the vehicle insurance loss data set }
+		\scalebox{1.000}{
+			\begin{tabular}{|c|c|c|} \hline \hline
+				Statistic & \texttt{CLMSIZE} & \texttt{EXPSR}  \\ \hline \hline
+				Minimum  &    0.2               &   0.002  \\
+				Maximum  &     55.922              &   0.999 \\
+				\texttt{$Q_{1}$} &      0.354             & 0.411 \\
+				\texttt{$Q_{3}$} &   2.091            &  0.832 \\ 
+				Median  &        0.761            &  0.637 \\
+				Mean &           2.014            &   0.611 \\
+				Skewness &       5.041            &  -0.346  \\
+				Kurtosis &       43.215            & 2.128\\ \hline                                               
+		\end{tabular}}
+		\label{cart}
+	\end{table} 
+\end{frame}
+\begin{frame}{Real Data}
+	 \begin{figure}[htp]
+		\begin{center}
+			\includegraphics[width=12cm]{eda1234.jpeg}
+			\caption{summary of categorical explanatory variable}
+			\label{figtwo}
+		\end{center}
+		
+	\end{figure}
+\end{frame}
+\begin{frame}{Real Data}
+	\begin{table}[htp] \label{est}
+		\centering
+		\caption{Parameter estimates of the fitted models}
+	\scalebox{0.55}{\begin{tabular}{l|cc}\hline \hline
+			{Models}                                    \\ \hline
+			Estimates       & PW ($\alpha_i$, $\phi_i$) &  PW ($\alpha$, $\phi_i$)\\ \hline \hline
+			{ Coefficients	$\boldsymbol{\beta_{1}}$ }                   \\ \hline
+			Intercept ($\beta_{1,0}$) &  -0.0186 &--       \\
+			\texttt{EXPSR} ($\beta_{1,1}$) & 0.7645 & --   \\
+			\texttt{VEHAGE} 2 	($\beta_{1,2}$) & -0.0561&--       \\
+			\texttt{VEHAGE} 3 ($\beta_{1,3}$)&  -0.1283 &      --     \\
+			\texttt{VEHAGE} 4 	($\beta_{1,4}$) &  -0.2055 & --     \\
+			\texttt{GENDR} 1  	($\beta_{1,5}$)    &  0.1411 & --      \\
+			\texttt{AGECAT} 2 	($\beta_{1,6}$) & 0.2474    &     --    \\
+			\texttt{AGECAT} 3 	($\beta_{1,7}$)  &  0.2839 &--       \\
+			\texttt{AGECAT} 4 	($\beta_{1,8}$)  &  0.2894  &  --    \\
+			\texttt{AGECAT} 5 	($\beta_{1,9}$) &  0.3996  &--      \\
+			\texttt{AGECAT} 6 	($\beta_{1,10}$) &  0.3562 & --       \\ \hline
+		   { Coefficients	$\boldsymbol{\beta_{2}}$ }                   \\ \hline
+			Intercept 	($\beta_{2,0}$) & 0.2454  &  0.1493     \\
+			\texttt{EXPSR} 	($\beta_{2,1}$)  &  -0.0404& 0.0524      \\
+			\texttt{VEHAGE} 2 	($\beta_{2,2}$)& 0.0242  &  0.0241   \\
+			\texttt{VEHAGE} 3 ($\beta_{2,3}$) &   0.0704 & 0.0622       \\
+			\texttt{VEHAGE} 4 ($\beta_{2,4}$)  & 0.1072  & 0.0918      \\
+			\texttt{GENDR} 1    	($\beta_{2,5}$)   & -0.0499 &-0.0354      \\
+			\texttt{AGECAT} 2  	($\beta_{2,6}$) & -0.0645 &  -0.0328     \\
+			\texttt{AGECAT} 3  	($\beta_{2,7}$) &  -0.0703 &  -0.0291     \\
+			\texttt{AGECAT} 4 	($\beta_{2,8}$)  &  -0.0821 &-0.0364      \\
+			\texttt{AGECAT} 5 	($\beta_{2,9}$) &  -0.0974  & -0.0493     \\
+			\texttt{AGECAT} 6 ($\beta_{2,10}$)  & -0.0027 & 0.0282   \\ \hline \hline  
+		\end{tabular}}
+		\label{est}
+	\end{table}
+\end{frame}
+\begin{frame}{Real Data}
+	\textbf{Model Comparison}
+	\begin{itemize}
+		\item 	The model fit of the proposed mixed Pareto regression model having regression structure to both the parameters ($\alpha_i$, $\phi_i$)  for the vehicle insurance dataset is compared with the mixed Pareto regression model with regression structure to only one parameter ($\alpha$, $\phi_i$). \pause
+		\item For the selection of best fitted model we have used three model selection criterion namely Deviance, AIC and SBC (also known as BIC). The formulae involved in the computation of above mentioned models selection criterion are
+		\begin{equation*}
+			DEV=-2{l}(\hat{\theta})
+		\end{equation*} 
+	where ${l(\hat{\theta})}$ is the maximum of the log-likelihood and $\hat{\theta}$ is the vector of the estimated model parameters.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Real Data}
+	\begin{itemize}
+		\item The AIC can be computed as
+		\begin{equation*}
+			AIC=-2{l}(\hat{\theta})+ 2 \times df\pause
+		\end{equation*} 
+		\item The SBC is given by
+		\begin{equation*}
+			SBC=-2{l}(\hat{\theta})+ \text{log}(n) \times df
+		\end{equation*}
+		where $n$ is sample size of the data set and $df$ is the number of fitted parameters of the model.\\
+	\end{itemize}
+	 
+\end{frame}
+\begin{frame}{Real Data}
+	\begin{table}[htp] 
+		\centering
+		\caption{Values of Negative Log-Likelihood Function, Global deviance, AIC and SBC for vehicle insurance dataset}
+		\begin{tabular}{lccccc} \hline \hline
+			Model     & df & NLL    & Deviance       & AIC      & SBC   \\ \hline \hline
+			PW ($\alpha_i$, $\phi_i$) &22 & 7375.29  & 14750.61    &  14794.61     & 14936.26\\ 	PW ($\alpha$, $\phi_i$) &12 & 7433.33  & 14866.66    &  14890.66     & 14967.93
+			\\ \hline \hline
+		\end{tabular} 
+		\label{tabaic}
+	\end{table}
+\end{frame}
+\section{Conclusions}
+\begin{frame}{Conclusions}
+	\begin{itemize}
+	 \item We have proposed the new heavy tailed distribution known as Pareto-Weibull distribution generated by considering the scale parameter of the Pareto density follows Weibull distribution.\pause
+	 \item We have illustrated the application of Pareto-Weibull distribution to two real world data sets.\pause
+	\item By comparing Pareto-Weibull distribution with other existing distribution we conclude that the Pareto-Weibull performs better and can be a considerable heavy tailed distribution
+	
+	\end{itemize}
+	
+\end{frame}
+\begin{frame}{Conclusions}
+	\begin{itemize}
+		\item We also proposed the mixed Pareto regression model having regression structure to both the parameters $\alpha_i$ and $\phi_i$ to account for the heterogeneity associated with the claim amount.\pause
+		 \item One real life insurance data set namely vehicle insurance data set is provided to emphasize on the applicability of the proposed mixed Pareto regression model and to asses the utility of our proposed estimation methodology.\pause
+		 \item The results obtained for vehicle insurance data set suggest that the Pareto-Weibull regression model ($\alpha_i$, $\phi_i$) performs better than the Pareto-Weibull regression model ($\alpha$, $\phi_i$). 
+	\end{itemize}
+\end{frame}
+\section{References}
+\begin{frame}{References}
+	 \begin{thebibliography}{}
+	 	\bibitem{} Bakar, S.A. A., Hamzaha, N. A.,Maghsoudia, M. \& Nadarajah, S. (2015). Modeling loss data using composite models. \textit{Insurance: Mathematics and Economics}, 61, 146–154.
+	 	
+	 	\bibitem{} Bhati D., Ravi S.(2018). On generalized log-Moyal distribution: A new heavy tailed size distribution. \textit{Insurance: Mathematics and Economics}.
+	 	
+	 	\bibitem{} Colombi, R. (1990).  A New Model Of Income Distribution: The Pareto-Lognormal Distribution. \textit{Studies in Contemporary Economics. Income and Wealth Distribution, Inequality and Poverty}, 18-32.\\
+	 		
+	 	\bibitem{} Tzougas, G., \& Karlis, D. (2020). An EM algorithm for fitting a new class of mixed exponential regression models with varying dispersion. ASTIN Bulletin: The Journal of the IAA, 50(2), 555-583.	
+ 	\end{thebibliography}
+\end{frame}
+\begin{frame}
+	\centering
+	\fontsize{25}{11}
+	\textbf{Thank you}
+\end{frame}
+\end{document}
